@@ -3,12 +3,19 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { counterReducer } from './counter.reducer';
-import { MyCounterComponent } from './my-counter/my-counter.component';
+import { booksReducer } from './state/books.reducer';
+import { collectionReducer } from './state/collection.reducer';
+import { BookListComponent } from './book-list/book-list.component';
+import { BookCollectionComponent } from './book-collections.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  imports: [BrowserModule, StoreModule.forRoot({ count: counterReducer })],
-  declarations: [AppComponent, MyCounterComponent],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    StoreModule.forRoot({ count: booksReducer, collection: collectionReducer }),
+  ],
+  declarations: [AppComponent, BookListComponent, BookCollectionComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
